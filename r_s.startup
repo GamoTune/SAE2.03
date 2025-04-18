@@ -1,0 +1,5 @@
+ip address add 172.18.166.254/24 dev eth0
+ip address add 10.0.0.2/28 dev eth1
+
+ip route add default via 10.0.0.1
+ip route add 172.18.167.0/24 via 172.18.166.253

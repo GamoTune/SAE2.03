@@ -1,1 +1,4 @@
 cp /shared/interfaces /etc/network/interfaces
+
+chmod +x /shared/dhcp_request.sh
+/shared/dhcp_request.sh

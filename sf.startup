@@ -1,0 +1,22 @@
+ip address add 172.18.167.1/23 dev eth0
+ip route add default via 172.18.167.254
+
+# Installation de vsftpd
+DEBIAN_FRONTEND=noninteractive apt update
+DEBIAN_FRONTEND=noninteractive apt install -y vsftpd
+
+# Configuration minimale
+echo "
+listen=YES
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+chroot_local_user=YES
+" > /etc/vsftpd.conf
+
+# Création d'un utilisateur FTP
+useradd -m admin
+echo 'admin:admin' | chpasswd
+
+# Lancer le service
+systemctl restart vsftpd

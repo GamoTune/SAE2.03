@@ -1,4 +1,4 @@
-ip address add 172.18.164.254/23 dev eth0
+
 ip address add 10.0.2.2/28 dev eth1
 
 ip route add default via 10.0.2.1
@@ -16,3 +16,16 @@ cp /shared/isc-dhcp-server /etc/default/isc-dhcp-server
 dos2unix /etc/default/isc-dhcp-server
 
 systemctl restart isc-dhcp-server
+
+echo "
+auto lo 
+iface lo inet loopback
+
+auto eth0 
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+address 10.0.2.2
+netmask 255.255.254.0
+gateway 10.0.2.1" > /etc/network/interfaces

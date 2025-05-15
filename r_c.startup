@@ -5,10 +5,10 @@ ip route add default via 10.0.2.1
 
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
-apt update
+apt update -y && apt upgrade -y
 DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confold" isc-dhcp-server
 
 cp /shared/dhcpd.conf /etc/dhcp/dhcpd.conf
 cp /shared/isc-dhcp-server /etc/default/isc-dhcp-server
 
-systemctl start isc-dhcp-server
+systemctl restart isc-dhcp-server

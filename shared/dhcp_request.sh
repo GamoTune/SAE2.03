@@ -1,7 +1,4 @@
-#!/bin/bash
-while true; do
-    echo "Tentative de requête DHCP..."
-    dhclient eth0 && break
-    echo "Échec. Nouvelle tentative dans 5 secondes."
+while ! ip addr show eth0 | grep -q "inet "; do
+    dhclient eth0
     sleep 5
 done

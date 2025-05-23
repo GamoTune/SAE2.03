@@ -3,3 +3,13 @@ ip link set eth0 up
 
 ip route add default via 172.18.167.254
 
+apt update -y && apt upgrade -y
+DEBIAN_FRONTEND=noninteractive apt install -y openssh-server
+
+mkdir -p /var/run/sshd
+
+echo "admin:root" | chpasswd
+
+sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+/usr/sbin/sshd

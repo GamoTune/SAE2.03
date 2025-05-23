@@ -3,6 +3,8 @@ ip link set eth0 up
 
 ip route add default via 172.18.167.254
 
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
 apt update -y && apt upgrade -y
 DEBIAN_FRONTEND=noninteractive apt install -y openssh-server
 

@@ -5,11 +5,9 @@ ip route add default via 172.18.167.254
 
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
-# Installation de vsftpd
 DEBIAN_FRONTEND=noninteractive apt update
 DEBIAN_FRONTEND=noninteractive apt install -y vsftpd
 
-# Configuration minimale
 echo "
 listen=YES
 anonymous_enable=NO
@@ -18,9 +16,7 @@ write_enable=YES
 chroot_local_user=NO
 " > /etc/vsftpd.conf
 
-# Création d'un utilisateur FTP
 useradd -m admin
 echo 'admin:admin' | chpasswd
 
-# Lancer le service
 systemctl restart vsftpd
